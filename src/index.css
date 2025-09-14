@@ -198,8 +198,16 @@
     background: var(--gradient-hero);
   }
   
-  .shadow-custom {
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .shadow-medium {
     box-shadow: var(--shadow-medium);
+  }
+  
+  .shadow-strong {
+    box-shadow: var(--shadow-strong);
   }
 }
 
