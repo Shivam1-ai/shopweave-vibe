@@ -1,6 +1,8 @@
 import { Heart, Star, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/context/CartContext";
+import { useToast } from "@/hooks/use-toast";
 
 interface ProductCardProps {
   id: string;
@@ -16,6 +18,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({
+  id,
   name,
   price,
   originalPrice,
@@ -27,6 +30,32 @@ const ProductCard = ({
   isSale,
 }: ProductCardProps) => {
   const discount = originalPrice ? Math.round(((originalPrice - price) / originalPrice) * 100) : 0;
+  const { addToCart, addToWishlist, removeFromWishlist, isInWishlist } = useCart();
+  const { toast } = useToast();
+
+  const handleAddToCart = () => {
+    addToCart({ id, name, price, image, category });
+    toast({
+      title: "Added to cart!",
+      description: `${name} has been added to your cart.`,
+    });
+  };
+
+  const handleWishlistToggle = () => {
+    if (isInWishlist(id)) {
+      removeFromWishlist(id);
+      toast({
+        title: "Removed from wishlist",
+        description: `${name} has been removed from your wishlist.`,
+      });
+    } else {
+      addToWishlist({ id, name, price, image, category });
+      toast({
+        title: "Added to wishlist!",
+        description: `${name} has been added to your wishlist.`,
+      });
+    }
+  };
 
   return (
     <div className="product-card group">
@@ -57,13 +86,17 @@ const ProductCard = ({
           size="icon"
           variant="secondary"
           className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          onClick={handleWishlistToggle}
         >
-          <Heart className="w-4 h-4" />
+          <Heart className={`w-4 h-4 ${isInWishlist(id) ? 'fill-red-500 text-red-500' : ''}`} />
         </Button>
         
         {/* Quick add to cart */}
         <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <Button className="w-full bg-primary/90 hover:bg-primary text-primary-foreground">
+          <Button 
+            className="w-full bg-primary/90 hover:bg-primary text-primary-foreground"
+            onClick={handleAddToCart}
+          >
             <ShoppingCart className="w-4 h-4 mr-2" />
             Add to Cart
           </Button>
@@ -99,11 +132,11 @@ const ProductCard = ({
         {/* Price */}
         <div className="flex items-center gap-2">
           <span className="price-current">
-            ${price.toFixed(2)}
+            ₹{price.toLocaleString('en-IN')}
           </span>
           {originalPrice && (
             <span className="price-original">
-              ${originalPrice.toFixed(2)}
+              ₹{originalPrice.toLocaleString('en-IN')}
             </span>
           )}
         </div>

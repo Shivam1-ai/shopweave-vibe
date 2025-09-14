@@ -8,8 +8,8 @@ const featuredProducts = [
   {
     id: "1",
     name: "Designer Leather Handbag",
-    price: 299.99,
-    originalPrice: 399.99,
+    price: 24999,
+    originalPrice: 32999,
     image: handbagImage,
     rating: 4.8,
     reviewCount: 124,
@@ -19,7 +19,7 @@ const featuredProducts = [
   {
     id: "2",
     name: "Premium Athletic Sneakers",
-    price: 159.99,
+    price: 12999,
     image: sneakersImage,
     rating: 4.9,
     reviewCount: 87,
@@ -29,8 +29,8 @@ const featuredProducts = [
   {
     id: "3",
     name: "Elegant Gold Watch Set",
-    price: 899.99,
-    originalPrice: 1199.99,
+    price: 74999,
+    originalPrice: 99999,
     image: jewelryImage,
     rating: 4.7,
     reviewCount: 63,
@@ -40,7 +40,7 @@ const featuredProducts = [
   {
     id: "4",
     name: "Classic Designer Handbag",
-    price: 449.99,
+    price: 37499,
     image: handbagImage,
     rating: 4.6,
     reviewCount: 91,
@@ -49,8 +49,8 @@ const featuredProducts = [
   {
     id: "5",
     name: "Sport Performance Shoes",
-    price: 189.99,
-    originalPrice: 229.99,
+    price: 15499,
+    originalPrice: 18999,
     image: sneakersImage,
     rating: 4.8,
     reviewCount: 156,
@@ -60,7 +60,7 @@ const featuredProducts = [
   {
     id: "6",
     name: "Luxury Jewelry Collection",
-    price: 649.99,
+    price: 53999,
     image: jewelryImage,
     rating: 4.9,
     reviewCount: 45,
